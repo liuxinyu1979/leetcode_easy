@@ -21,3 +21,36 @@ Constraints:
 
 -231 <= x <= 231 - 1
 '''
+# both time and space complexity are O(n)
+def is_palindrome_linear(input):
+    # convert number to string
+    # then process both ends inward
+    if input < 0:
+        return False
+    
+    num_str=str(input)
+    if len(num_str)==1:
+        return True
+    mid=len(num_str)//2
+    if input%2 == 1:
+        mid += 1
+    left=0 
+    rit=len(num_str)-1
+    for left in range(0,mid):
+        if left >= rit:
+            return True
+        
+        if num_str[left] != num_str[rit]:
+            return False
+        
+        left += 1
+        rit -=1
+    return True
+
+
+
+
+if __name__ == "__main__":
+    test_nums=[121, -121, 10, 1, 123321, 1234321, 1234]
+    for v in test_nums:
+        print (f"Input: {v}, the result is {is_palindrome_linear(v)}")
