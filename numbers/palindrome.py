@@ -98,7 +98,7 @@ rh 10X greater than input variable n, that's why we compare both n == rh and r =
 This algo is log10K because n is reduced by 1 digit at a time, but that digit represent a shrunk by 10
 '''
 def is_palindrome_lg_10_base_k(input):
-    if input <0 or input %10==0:
+    if input <0 or (input %10==0 and input !=0):
         return False
     
     reverse_half=0
@@ -114,7 +114,7 @@ def is_palindrome_lg_10_base_k(input):
 
 
 if __name__ == "__main__":
-    test_nums=[121, -121, 100, 20, 10, 1, 123321, 1234321, 1234]
+    test_nums=[0,121, -121, 100, 20, 10, 1, 123321, 1234321, 1234]
     for v in test_nums:
         print (f"Test Linear Input: {v}, the result is {is_palindrome_linear(v)}")
         
