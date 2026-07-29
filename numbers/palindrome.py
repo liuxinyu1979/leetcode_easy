@@ -47,10 +47,79 @@ def is_palindrome_linear(input):
         rit -=1
     return True
 
+'''
+n=1234
+reverse_half: rh=0
+
+if n > rh
+n=1234/10 = 123
+mod=1234%10=4
+rh=rh*10+mod=0*10+4=4
+
+if n>rh
+n=123/10=12
+mod=123%10=3
+rh=rh*10+mod=4*10+3=43
+if n>rh which is not (12 < 43)
+
+n=12, rh43, they are not the same, return false
+
+-------
+n=123
+rh=0
+if n > rh
+n=123/10=12
+m=123%10=3
+rh=0*10+3=3
+
+if n>rh
+n=12/10 = 1
+m=12%10=2
+rh=3*10+2=32
+
+n=1, rh=32, not the same
+
+----
+n=121
+rh=0
+if n>rh
+n=121/10 = 12
+m=121%10=1
+rh=0*10+1=1
+
+if n>rh
+n=12/10=1
+m=12%10=2
+rh=1*10+2=12
+n=1, rh=12, because rh/10=12/10=1, its the same as n. 
+This is because if a number has odd number of digits, then (if n>rh) expression will bring 
+rh 10X greater than input variable n, that's why we compare both n == rh and r == rh/10
+
+This algo is log10K because n is reduced by 1 digit at a time, but that digit represent a shrunk by 10
+'''
+def is_palindrome_lg_10_base_k(input):
+    if input <0 or input %10==0:
+        return False
+    
+    reverse_half=0
+    while input > reverse_half:
+        mod_val=input%10
+        input //= 10
+        reverse_half=reverse_half*10+mod_val
+        
+    if input == reverse_half or input == reverse_half//10:
+        return True
+    return False
 
 
 
 if __name__ == "__main__":
-    test_nums=[121, -121, 10, 1, 123321, 1234321, 1234]
+    test_nums=[121, -121, 100, 20, 10, 1, 123321, 1234321, 1234]
     for v in test_nums:
-        print (f"Input: {v}, the result is {is_palindrome_linear(v)}")
+        print (f"Test Linear Input: {v}, the result is {is_palindrome_linear(v)}")
+        
+    for v in test_nums:
+        print (f"Test log10k Input: {v}, the result is {is_palindrome_lg_10_base_k(v)}")
+        
+    # print(f"{is_palindrome_lg_10_base_k(101)}")
+        
