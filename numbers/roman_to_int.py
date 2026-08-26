@@ -50,6 +50,8 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
 '''
 
+import unittest
+
 def roman_to_int(input_str):
     # if we encounter a letter, we can lookup the value and do add or subtract
     # add and subtract is based on whether or not the previous value is smaller
@@ -77,11 +79,23 @@ def roman_to_int(input_str):
                 total += cur_val
     return total
 
+class TestSomething(unittest.TestCase):
+    def test_a(self):
+        self.assertEqual(roman_to_int('II'), 2)
 
-if __name__ == "__main__":
-    print(f"{roman_to_int('II')}")
-    print(f"{roman_to_int('IV')}")
-    print(f"{roman_to_int('VI')}")
-    print(f"{roman_to_int('M')}") # 1000
-    print(f"{roman_to_int('LVIII')}") #58
-    print(f"{roman_to_int('MCMXCIV')}") # 1994
+    def test_all(self):
+        self.assertEqual(roman_to_int('II'), 2)
+        self.assertEqual(roman_to_int('IV'), 4)
+        self.assertEqual(roman_to_int('VI'), 6)
+        self.assertEqual(roman_to_int('M'), 1000)
+        self.assertEqual(roman_to_int('LVIII'), 58)
+        self.assertEqual(roman_to_int('MCMXCIV'), 1994)
+
+
+# if __name__ == "__main__":
+#     print(f"{roman_to_int('II')}")
+#     print(f"{roman_to_int('IV')}")
+#     print(f"{roman_to_int('VI')}")
+#     print(f"{roman_to_int('M')}") # 1000
+#     print(f"{roman_to_int('LVIII')}") #58
+#     print(f"{roman_to_int('MCMXCIV')}") # 1994
