@@ -21,6 +21,8 @@ Constraints:
 
 -231 <= x <= 231 - 1
 '''
+import unittest
+
 # both time and space complexity are O(n)
 def is_palindrome_linear(input):
     # convert number to string
@@ -111,15 +113,23 @@ def is_palindrome_lg_10_base_k(input):
         return True
     return False
 
+class TestPalindromeNumbers(unittest.TestCase):
+    def test_log_algo(self):
+        test_nums={0:True,121:True, -121:False, 100:False, 20:False, 10:False, 1:True, 123321:True, 1234321:True, 1234:False}
+        for key,val in test_nums.items():
+            self.assertEqual(is_palindrome_lg_10_base_k(key), val)
 
+# coverage run -m unittest unittest_divide.py
+# coverage report or coverage html followed by htmlcov/index.html
+#unittest.main() 
 
-if __name__ == "__main__":
-    test_nums=[0,121, -121, 100, 20, 10, 1, 123321, 1234321, 1234]
-    for v in test_nums:
-        print (f"Test Linear Input: {v}, the result is {is_palindrome_linear(v)}")
+# if __name__ == "__main__":
+#     test_nums=[0,121, -121, 100, 20, 10, 1, 123321, 1234321, 1234]
+#     for v in test_nums:
+#         print (f"Test Linear Input: {v}, the result is {is_palindrome_linear(v)}")
         
-    for v in test_nums:
-        print (f"Test log10k Input: {v}, the result is {is_palindrome_lg_10_base_k(v)}")
+#     for v in test_nums:
+#         print (f"Test log10k Input: {v}, the result is {is_palindrome_lg_10_base_k(v)}")
         
-    # print(f"{is_palindrome_lg_10_base_k(101)}")
+#     # print(f"{is_palindrome_lg_10_base_k(101)}")
         

@@ -19,16 +19,19 @@ time complexity: O(n^2) quadratic time
 space complexity: o(1), no extra space required
 nested loop
 """
+
+import unittest
+
 def twosum_quadratic(input_ary, target):
     ans=[-1,-1]
     ary_len=len(input_ary)
     for x in range(0,ary_len):
         for y in range(x+1,ary_len):
             if input_ary[x]+input_ary[y] == target:
-                print("found")
+                # print("found")
                 ans=[x,y]
                 return ans
-    print("not found")
+    # print("not found")
     return ans
 
 """
@@ -64,21 +67,19 @@ def twosum_linear(input_ary, target):
     return ans
     
 
+class TestTwoSum(unittest.TestCase):
+    def test_quad(self):
+        self.assertEqual(twosum_quadratic([2, 7, 11, 15], 9), [0,1])
+        self.assertEqual(twosum_quadratic([3,2,4], 6), [1,2])
+        self.assertEqual(twosum_quadratic([3,3], 6), [0,1])
+        self.assertEqual(twosum_quadratic([3,3], 5), [-1,-1])
+        
+    def tests_linear(self):
+        self.assertEqual(twosum_linear([2, 7, 11, 15], 9), [0,1])
+        self.assertEqual(twosum_linear([3,2,4], 6), [1,2])
+        self.assertEqual(twosum_linear([3,3], 6), [0,1])
+        self.assertEqual(twosum_linear([3,3], 5), [-1,-1])        
 
-def tests_quad():
-    print(f"test_1_quad result is: {twosum_quadratic([2, 7, 11, 15], 9)}")    
-    print(f"test_2_quad result is: {twosum_quadratic([3,2,4], 6)}")
-    print(f"test_3_quad result is: {twosum_quadratic([3,3], 6)}")
-    print(f"test_4_quad result is: {twosum_quadratic([3,3], 5)}")
-
-def tests_linear():
-    print(f"test_1_linear result is: {twosum_linear([2, 7, 11, 15], 9)}")    
-    print(f"test_2_linear result is: {twosum_linear([3,2,4], 6)}")
-    print(f"test_3_linear result is: {twosum_linear([3,3], 6)}")
-    print(f"test_4_linear result is: {twosum_linear([3,3], 5)}")
-
-
-if __name__ == "__main__":
-    tests_quad()
-    tests_linear()
-    
+# coverage run -m unittest twosum.py
+# coverage report or coverage html followed by htmlcov/index.html
+# unittest.main()
